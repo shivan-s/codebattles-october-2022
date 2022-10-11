@@ -30,6 +30,7 @@ pytest-factoryboy = "*"
 pytest-xdist = "*"
 pytest-instafail = "*"
 pytest-lazy-fixture = "*"
+tox = "*"
 
 [requires]
 python_version = "3.10"

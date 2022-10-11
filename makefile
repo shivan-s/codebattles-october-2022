@@ -11,19 +11,19 @@ attach:
 
 .PHONY: makemigrations
 makemigrations:
-	docker-compose up -d  && \
+	docker-compose up --build -d  && \
 	docker exec -it codebattles-october-2022-api-app sh -c "python manage.py makemigrations"
 
 .PHONY: migrate
 migrate:
-	docker-compose up -d  && \
+	docker-compose up --build -d  && \
 	docker exec -it codebattles-october-2022-api-app sh -c "python manage.py migrate"
 
 ARG=''
 .PHONY: test
 test:
 	clear
-	docker-compose up -d  && \
+	docker-compose up --build -d  && \
 	docker exec -it codebattles-october-2022-api-app sh -c "pytest $(ARG)"
 
 .PHONY: shell
@@ -34,3 +34,8 @@ shell:
 generate-key:
 	@echo '' && \
 	pipenv -q run python manage.py shell -c 'from django.core.management import utils; print(utils.get_random_secret_key())'
+
+.PHONY: tox
+tox:
+	docker-compose up --build -d  && \
+	docker exec -it codebattles-october-2022-api-app sh -c "tox"
