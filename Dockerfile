@@ -11,4 +11,4 @@ RUN pipenv install --system --deploy --dev
 
 COPY . /code/
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["gunicorn", "--worker-tmp-dir", "/dev/shm", "config.wsgi", "-b", "0.0.0.0:8000"]
