@@ -30,7 +30,7 @@ class Advocate(models.Model):
     @property
     def advocate_years_exp(self) -> int:
         """Give number of years of experience."""
-        return self.join_date.year - datetime.now().year
+        return datetime.now().year - self.join_date.year
 
     @property
     def links(self) -> dict[str, str]:
