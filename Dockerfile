@@ -11,6 +11,8 @@ RUN pipenv install --system --deploy --dev
 
 COPY . /code/
 
-ENTRYPOINT ["entrypoint.sh"]
+RUN ["chmod", "+x", "/code/entrypoint.sh"]
+
+CMD ["/bin/sh", "/code/entrypoint.sh"]
 
 EXPOSE 8000
