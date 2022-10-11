@@ -11,6 +11,7 @@ class CompanyViewSet(viewsets.ModelViewSet):
 
     - `/companies/:id` - provide a detail view for a particular company.
     - `/companies?search=` - provide search query.
+    - `/companies?limit=` - limit to the response.
     """
 
     filter_backends = [filters.SearchFilter]
