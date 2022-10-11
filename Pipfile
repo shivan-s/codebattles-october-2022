@@ -1,0 +1,38 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+whitenoise = "*"
+django-rest-framework = "*"
+markdown = "*"
+django-cors-headers = "*"
+
+[dev-packages]
+pytest = "*"
+pytest-django = "*"
+pytest-cov = "*"
+djangorestframework-stubs = { extras = ["compatible-mypy"], version = "*" }
+django-stubs = { extras = ["compatible-mypy"], version = "*" }
+types-setuptools = "*"
+flake8 = "*"
+mypy = "*"
+faker = "*"
+coverage = { extras = ["toml"], version = "*" }
+factory-boy = "*"
+pdbr = "*"
+pytest-factory = "*"
+pytest-factoryboy = "*"
+pytest-xdist = "*"
+pytest-instafail = "*"
+pytest-lazy-fixture = "*"
+
+[requires]
+python_version = "3.10"
+
+[scripts]
+test = "pytest"

@@ -1,15 +1,37 @@
+# Run docker containers
 .PHONY: run
 run:
-	docker-compose --env-file ./backend/.env up -d --build db
-	cd ./backend && pipenv run python manage.py runserver
+	docker-compose down --remove-orphans && \
+	docker-compose up --build -d
+
+# Attach to docker containers
+.PHONY: attach
+attach:
+	docker-compose up
+
+.PHONY: makemigrations
+makemigrations:
+	docker-compose up -d  && \
+	docker exec -it codebattles-october-2022-api-app sh -c "python manage.py makemigrations"
 
 .PHONY: migrate
 migrate:
-	cd ./backend && \
-	pipenv run python manage.py collectstatic && \
-	pipenv run python manage.py makemigrations && \
-	pipenv run python manage.py migrate
+	docker-compose up -d  && \
+	docker exec -it codebattles-october-2022-api-app sh -c "python manage.py migrate"
 
+ARG=''
 .PHONY: test
 test:
-	cd ./backend && pipenv run pytest -vv
+	clear
+	docker-compose up -d  && \
+	docker exec -it codebattles-october-2022-api-app sh -c "pytest $(ARG)"
+
+.PHONY: shell
+shell:
+	docker exec -it codebattles-october-2022-api-app sh -c "python manage.py shell"
+
+.PHONY: generate-key
+generate-key:
+	@echo '' && \
+	cd ./backend && \
+	pipenv -q run python manage.py shell -c 'from django.core.management import utils; print(utils.get_random_secret_key())'
