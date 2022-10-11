@@ -12,3 +12,5 @@ RUN pipenv install --system --deploy --dev
 COPY . /code/
 
 CMD ["gunicorn", "--worker-tmp-dir", "/dev/shm", "config.wsgi", "-b", "0.0.0.0:8000"]
+
+EXPOSE 8000
