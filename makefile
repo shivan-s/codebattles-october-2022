@@ -33,5 +33,4 @@ shell:
 .PHONY: generate-key
 generate-key:
 	@echo '' && \
-	cd ./backend && \
 	pipenv -q run python manage.py shell -c 'from django.core.management import utils; print(utils.get_random_secret_key())'
