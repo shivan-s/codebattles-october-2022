@@ -25,7 +25,7 @@ class Advocate(models.Model):
     class Meta:
         """Option for Advocate model."""
 
-        ...
+        ordering = ["name"]
 
     @property
     def advocate_years_exp(self) -> int:
@@ -36,7 +36,11 @@ class Advocate(models.Model):
     def links(self) -> dict[str, str]:
         """Provide social links."""
         return {
-            "youtube": f"youtube.com/{self.youtube_username}",
+            "youtube": f"youtube.com/channel/{self.youtube_username}",
             "twitter": f"twitter.com/{self.twitter_username}",
             "github": f"github.com/{self.github_username}",
         }
+
+    def __str__(self):
+        """Represent string."""
+        return f"{self.name}"

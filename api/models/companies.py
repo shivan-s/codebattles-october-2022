@@ -14,6 +14,11 @@ class Company(models.Model):
     summary = models.TextField(null=True, blank=True)
 
     class Meta:
-        """Setting for company model."""
+        """Settings for company model."""
 
-        ...
+        verbose_name_plural = "Companies"
+        ordering = ["name"]
+
+    def __str__(self):
+        """Represent string."""
+        return f"{self.name}"

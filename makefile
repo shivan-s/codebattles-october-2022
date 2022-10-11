@@ -39,3 +39,7 @@ generate-key:
 tox:
 	docker-compose up --build -d  && \
 	docker exec -it codebattles-october-2022-api-app sh -c "tox"
+
+.PHONY: exec
+exec:
+	docker exec -it codebattles-october-2022-api-app sh

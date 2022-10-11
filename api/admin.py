@@ -7,26 +7,17 @@ from api.models import Advocate, Company
 class AdvocateAdmin(admin.ModelAdmin):
     """Admin view for Advocate."""
 
-    search_field = ("name",)
+    search_fields = ("name",)
     readonly_fields = ("id",)
-    list_display = (
-        "join_date",
-        "short_bio",
-        "long_bio",
-        "profile_pic",
-        "company",
-        "youtube_username",
-        "twitter_username",
-        "github_username",
-    )
+    list_display = ("name",)
 
 
 class CompanyAdmin(admin.ModelAdmin):
     """Admin view for Company."""
 
-    search_field = ("name",)
+    search_fields = ("name",)
     readonly_fields = ("id",)
-    list_display = ("summary",)
+    list_display = ("name",)
 
 
 admin.site.register(Advocate, AdvocateAdmin)
