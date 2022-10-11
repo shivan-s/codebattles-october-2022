@@ -17,13 +17,13 @@ class CompanySerializer(serializers.ModelSerializer):
         """Serializer settings."""
 
         model = Company
-        fields = (
+        fields = [
             "id",
             "url",
             "name",
             "logo",
             "summary",
-        )
+        ]
 
 
 class CompanyDetailSerializer(CompanySerializer):
@@ -41,4 +41,4 @@ class CompanyDetailSerializer(CompanySerializer):
     class Meta(CompanySerializer.Meta):
         """Serializer settings."""
 
-        fields = CompanySerializer.Meta.fields + ("advocates",)
+        fields = CompanySerializer.Meta.fields + ["advocates"]

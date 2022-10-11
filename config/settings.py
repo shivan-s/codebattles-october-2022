@@ -141,7 +141,7 @@ SECURE_HSTS_SECONDS = 3600
 SECURE_HSTS_PRELOAD = True
 
 # CORS open to all!
-CORS_ALLOWED_ORIGINS = []
+CORS_ALLOWED_ORIGINS: list[str] = []
 CORS_ALLOW_ALL_ORIGINS = True
 
 # Development settings

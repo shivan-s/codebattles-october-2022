@@ -16,7 +16,7 @@ class AdvocateSerializer(serializers.ModelSerializer):
         """Serializer settings."""
 
         model = Advocate
-        fields = (
+        fields = [
             "id",
             "url",
             "name",
@@ -25,7 +25,7 @@ class AdvocateSerializer(serializers.ModelSerializer):
             "short_bio",
             "profile_pic",
             "company",
-        )
+        ]
 
 
 class AdvocateDetailSerializer(AdvocateSerializer):
@@ -34,4 +34,4 @@ class AdvocateDetailSerializer(AdvocateSerializer):
     class Meta(AdvocateSerializer.Meta):
         """Serializer settings."""
 
-        fields = AdvocateSerializer.Meta.fields + ("long_bio", "links")
+        fields = AdvocateSerializer.Meta.fields + ["long_bio", "links"]

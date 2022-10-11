@@ -35,14 +35,14 @@ class TestAdvocate:
         """Test list view for advocates."""
         advocates = advocate_factory.create_batch(1000)
         response = client.get(f"{self.url}")
-        response.status_code == status.HTTP_200_OK
+        assert response.status_code == status.HTTP_200_OK
         result = response.json()
         assert result["count"] == len(advocates)
 
     def test_retrieve(self, client, advocate):
         """Test retrieve view for an adovocate."""
         response = client.get(f"{self.url}/{advocate.id}")
-        response.status_code == status.HTTP_200_OK
+        assert response.status_code == status.HTTP_200_OK
         result = response.json()
         assert result["name"] == advocate.name
 
@@ -50,7 +50,7 @@ class TestAdvocate:
         """Test search for advocates."""
         advocate_factory.create_batch(100)
         response = client.get(f"{self.url}?search={advocate.name}")
-        response.status_code == status.HTTP_200_OK
+        assert response.status_code == status.HTTP_200_OK
         result = response.json()
         assert result["count"] < Advocate.objects.all().count()
         assert result["results"][0]["name"] == advocate.name
@@ -78,7 +78,7 @@ class TestAdvocate:
             data=advocate,
             content_type="application/json",
         )
-        response.status_code == expected
+        assert response.status_code == expected
         if response.status_code == status.HTTP_201_CREATED:
             assert response["name"] == advocate.name
         else:
@@ -107,7 +107,7 @@ class TestAdvocate:
             data=new_advocate,
             content_type="application/json",
         )
-        response.status_code == expected
+        assert response.status_code == expected
         if response.status_code == status.HTTP_200_OK:
             assert response["name"] == new_advocate.name
         else:
@@ -133,7 +133,7 @@ class TestAdvocate:
     def test_delete(self, test_client, expected, advocate):
         """Test creation of company as well as authority to create."""
         response = test_client.delete(f"{self.url}/{advocate.pk}")
-        response.status_code == expected
+        assert response.status_code == expected
         if response.status_code == status.HTTP_204_NO_CONTENT:
             assert Advocate.objects.filter(pk=advocate.pk).exists() is False
         else:

@@ -20,7 +20,7 @@ repos:
       - args:
           - --pytest-test-first
         id: name-tests-test
-        exclude: ".*tests/factories/(.*).py"
+        exclude: ".*tests/(.*)/factories/(.*).py"
     repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.3.0
   - hooks:
